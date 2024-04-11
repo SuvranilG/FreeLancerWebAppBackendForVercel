@@ -46,10 +46,10 @@ const connect = async () => {
 
 // Use to use this one 
 app.use(cors({
-  origin: '*',//['http://localhost:5173','https://freelancerwebapp.netlify.app'],// Replace with your client's origin
+  origin: 'http://localhost:5173',//['http://localhost:5173','https://freelancerwebapp.netlify.app'],// Replace with your client's origin
   // credentials: true,
   methods: ['GET', 'HEAD','POST','PUT','DELETE'],
-  allowedHeaders:  ['Content-Type', 'Authorization']
+  allowedHeaders:  ['Content-Type', 'Authorization','Origin']
 }));
 
 // app.use((req, res, next) => {
@@ -81,14 +81,14 @@ app.use("/api/conversations", conversationRoute);
 app.use("/api/messages", messageRoute);
 app.use("/api/reviews", reviewRoute);
 
-// app.use((err, req, res, next) => {
-//   const errorStatus = err.status || 500;
-//   const errorMessage = err.message || "Something went wrong!";
-//   // res.header('Access-Control-Allow-Origin', '*'); // allows all origins
-//   // res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+app.use((err, req, res, next) => {
+  const errorStatus = err.status || 500;
+  const errorMessage = err.message || "Something went wrong!";
+  // res.header('Access-Control-Allow-Origin', '*'); // allows all origins
+  // res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
 
-//   return res.status(errorStatus).send(errorMessage);
-// });
+  return res.status(errorStatus).send(errorMessage);
+});
 
 app.listen(PORT, () => {
   connect();
