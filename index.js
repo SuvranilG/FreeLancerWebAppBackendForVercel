@@ -72,7 +72,7 @@ app.use(express.static("public"));
 app.use(express.json());
 app.use(cookieParser());
 
-app.get("/", (req, res) => {
+app.get("/", (req, res,next) => {
   res.send("Hello Freelancers");
   next();
 });
