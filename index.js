@@ -37,10 +37,6 @@ const connect = async () => {
 //     next();
 // });
 
-// app.use((req, res, next) => {
-//   res.setHeader('Referrer-Policy', 'no-referrer-when-downgrade');
-//   next();
-// });
 
 // app.use(cors({
 //   origin: 'http://localhost:5173/', // Replace with your client's origin
@@ -85,14 +81,14 @@ app.use("/api/conversations", conversationRoute);
 app.use("/api/messages", messageRoute);
 app.use("/api/reviews", reviewRoute);
 
-app.use((err, req, res, next) => {
-  const errorStatus = err.status || 500;
-  const errorMessage = err.message || "Something went wrong!";
-  // res.header('Access-Control-Allow-Origin', '*'); // allows all origins
-  // res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+// app.use((err, req, res, next) => {
+//   const errorStatus = err.status || 500;
+//   const errorMessage = err.message || "Something went wrong!";
+//   // res.header('Access-Control-Allow-Origin', '*'); // allows all origins
+//   // res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
 
-  return res.status(errorStatus).send(errorMessage);
-});
+//   return res.status(errorStatus).send(errorMessage);
+// });
 
 app.listen(PORT, () => {
   connect();
