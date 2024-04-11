@@ -44,7 +44,7 @@ const connect = async () => {
 //   allowedHeaders: ['Content-Type', 'X-AccessToken','Authorization']
 // }));
 
-// Use to use this one 
+// Used to use this one 
 app.use(cors({
   origin: 'http://localhost:5173',//['http://localhost:5173','https://freelancerwebapp.netlify.app'],// Replace with your client's origin
   // credentials: true,
@@ -64,14 +64,14 @@ app.use(cors({
 // app.use(cors({ origin: 'http://netlify.app.com', credentials: true })); 
 // app.use(cors({ origin: 'https://freelancer-fullstack.netlify.app', credentials: true })); 
 // app.use(cors());
-app.use(express.static("public"));
+// app.use(express.static("public"));
 app.use(express.json());
 app.use(cookieParser());
 
-// app.get("/", (req, res) => {
-//   res.send("Hello Freelancers");
-  
-// });
+app.get("/", (req, res,next) => {
+  res.send("Hello Freelancers");
+  next();
+});
 
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
