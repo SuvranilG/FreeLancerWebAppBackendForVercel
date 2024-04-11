@@ -74,6 +74,7 @@ app.use(cookieParser());
 
 app.get("/", (req, res) => {
   res.send("Hello Freelancers");
+  next();
 });
 
 app.use("/api/auth", authRoute);
