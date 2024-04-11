@@ -45,12 +45,12 @@ const connect = async () => {
 // }));
 
 // Use to use this one 
-app.use(cors({
-  origin: '*',//['http://localhost:5173','https://freelancerwebapp.netlify.app'],// Replace with your client's origin
-  // credentials: true,
-  methods: ['GET', 'HEAD','POST','PUT','DELETE'],
-  allowedHeaders:  '*'
-}));
+// app.use(cors({
+//   origin: '*',//['http://localhost:5173','https://freelancerwebapp.netlify.app'],// Replace with your client's origin
+//   // credentials: true,
+//   methods: ['GET', 'HEAD','POST','PUT','DELETE'],
+//   allowedHeaders:  '*'
+// }));
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*'); // Set the allowed origin
@@ -68,9 +68,9 @@ app.use(express.static("public"));
 app.use(express.json());
 app.use(cookieParser());
 
-app.get("/", (req, res,next) => {
+app.get("/", (req, res) => {
   res.send("Hello Freelancers");
-  next();
+  
 });
 
 app.use("/api/auth", authRoute);
