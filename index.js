@@ -26,16 +26,16 @@ const connect = async () => {
   }
 };
 
-// app.use(cors());
-// // Set additional headers
-// app.all('http://localhost:5173', function (req, res) {
-//     res.header('Access-Control-Allow-Origin', 'http://localhost:5173'); // Replace '*' with your allowed origin(s)
-//     res.header('Access-Control-Allow-Credentials', true); // Allow credentials
-//     res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With');
-//     res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
-//     // ... other headers as needed
-//     next();
-// });
+app.use(cors());
+// Set additional headers
+app.all('http://localhost:5173', function (req, res) {
+    res.header('Access-Control-Allow-Origin', '*'); // Replace '*' with your allowed origin(s)
+    // res.header('Access-Control-Allow-Credentials', true); // Allow credentials
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With');
+    res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
+    // ... other headers as needed
+    next();
+});
 
 
 // app.use(cors({
@@ -52,12 +52,12 @@ const connect = async () => {
 //   allowedHeaders:  ['Content-Type', 'Authorization','Origin']
 // }));
 
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*'); // Set the allowed origin
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE'); // Specify allowed HTTP methods
-  res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'); // Specify allowed headers
-  next();
-});
+// app.use((req, res, next) => {
+//   res.setHeader('Access-Control-Allow-Origin', '*'); // Set the allowed origin
+//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE'); // Specify allowed HTTP methods
+//   res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'); // Specify allowed headers
+//   next();
+// });
 
 // app.use(cors({ origin: '*'}));
 // app.use(cors({ origin: 'http://localhost:5173', credentials: true })); 
