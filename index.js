@@ -45,19 +45,19 @@ const connect = async () => {
 // }));
 
 // Used to use this one 
-app.use(cors({
-  origin: ['http://localhost:5173','https://freelancerwebapp.netlify.app'], //'*'// Replace with your client's origin
-  // credentials: true,
-  methods: ['GET', 'HEAD','POST','PUT','DELETE'],
-  allowedHeaders:  ['Content-Type', 'Authorization','Origin']
-}));
+// app.use(cors({
+//   origin: ['http://localhost:5173','https://freelancerwebapp.netlify.app'], //'*'// Replace with your client's origin
+//   // credentials: true,
+//   methods: ['GET', 'HEAD','POST','PUT','DELETE'],
+//   allowedHeaders:  ['Content-Type', 'Authorization','Origin']
+// }));
 
-// app.use((req, res, next) => {
-//   res.header('Access-Control-Allow-Origin', '*'); // Set the allowed origin
-//   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE'); // Specify allowed HTTP methods
-//   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization'); // Specify allowed headers
-//   next();
-// });
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*'); // Set the allowed origin
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE'); // Specify allowed HTTP methods
+  res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'); // Specify allowed headers
+  next();
+});
 
 // app.use(cors({ origin: '*'}));
 // app.use(cors({ origin: 'http://localhost:5173', credentials: true })); 
