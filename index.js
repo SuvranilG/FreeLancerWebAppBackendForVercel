@@ -29,10 +29,10 @@ const connect = async () => {
 app.use(cors());
 // Set additional headers
 app.all('http://localhost:5173', function (req, res) {
-    res.header('Access-Control-Allow-Origin', '*'); // Replace '*' with your allowed origin(s)
+    res.setHeader('Access-Control-Allow-Origin', '*'); // Replace '*' with your allowed origin(s)
     // res.header('Access-Control-Allow-Credentials', true); // Allow credentials
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With');
-    res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With');
+    res.setHeader('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
     // ... other headers as needed
     next();
 });
