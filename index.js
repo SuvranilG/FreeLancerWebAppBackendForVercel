@@ -26,24 +26,37 @@ const connect = async () => {
   }
 };
 
+// Define API endpoints
+const apiEndpoints = [
+  'https://freelancerwebapp.onrender.com',
+  'https://backend-ogreenery.onrender.com',
+  
+];
+
+function fetchData(apiUrl) {
+  // Fetch data from the API
+  fetch(apiUrl)
+    .then(response => response.text())
+    .then(data => {
+      // Process the fetched data (e.g., update UI, store in state, etc.)
+      console.log(`Fetched data from ${apiUrl}:`, data);
+    })
+    .catch(error => {
+      console.error(`Error fetching data from ${apiUrl}:`, error);
+    });
+}
+
+apiEndpoints.forEach(fetchData);
 
 
+app.use(cors({
+  origin: '*',
+  // credentials: true,
+  methods: ['GET', 'HEAD','POST','PUT','DELETE'],
+  allowedHeaders:  ['Content-Type', 'Authorization','Origin']
+}));
 
 
-// Used to use this one 
-// app.use(cors({
-//   origin: '*',// Replace with your client's origin
-//   // credentials: true,
-//   methods: ['GET', 'HEAD','POST','PUT','DELETE'],
-//   allowedHeaders:  ['Content-Type', 'Authorization','Origin']
-// }));
-
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*'); // Set the allowed origin
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE'); // Specify allowed HTTP methods
-  res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'); // Specify allowed headers
-  next();
-});
 
 
 app.use(express.json());
@@ -72,4 +85,8 @@ app.use((err, req, res, next) => {
 
 app.listen(PORT, () => {
   console.log("Backend server is running!");
+  const intervalInMilliseconds = 5 * 60 * 1000;
+  setInterval(() => {
+    apiEndpoints.forEach(fetchData);
+  }, intervalInMilliseconds);
 });
