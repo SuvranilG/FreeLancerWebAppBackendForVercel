@@ -47,7 +47,11 @@ function fetchData(apiUrl) {
 }
 
 apiEndpoints.forEach(fetchData);
-
+const intervalInMilliseconds = 5 * 60 * 1000;
+setInterval(() => {
+  apiEndpoints.forEach(fetchData);
+  console.log("Server Endpoints invoked successfully at "+ Date(Date.now()));
+}, intervalInMilliseconds);
 
 app.use(cors({
   origin: '*',
@@ -85,9 +89,5 @@ app.use((err, req, res, next) => {
 
 app.listen(PORT, () => {
   console.log("Backend server is running!");
-  const intervalInMilliseconds = 5 * 60 * 1000;
-  setInterval(() => {
-    apiEndpoints.forEach(fetchData);
-    console.log("Server Endpoints invoked successfully at "+ Date(Date.now()));
-  }, intervalInMilliseconds);
+
 });
