@@ -67,10 +67,11 @@ app.use(cors({
 // app.use(express.static("public"));
 app.use(express.json());
 app.use(cookieParser());
+connect();
 
-app.get("/", (req, res,next) => {
+app.get("/", (req, res) => {
   res.send("Hello Freelancers");
-  next();
+  // next();
 });
 
 app.use("/api/auth", authRoute);
@@ -91,6 +92,5 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(PORT, () => {
-  connect();
   console.log("Backend server is running!");
 });
