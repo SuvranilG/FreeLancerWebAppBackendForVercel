@@ -47,7 +47,7 @@ function fetchData(apiUrl) {
 }
 
 apiEndpoints.forEach(fetchData);
-const intervalInMilliseconds = 5 * 60 * 1000;
+const intervalInMilliseconds = 14.5 * 60 * 1000;
 setInterval(() => {
   apiEndpoints.forEach(fetchData);
   console.log("Server Endpoints invoked successfully at "+ Date(Date.now()));
